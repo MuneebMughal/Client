@@ -1,0 +1,9 @@
+.fieldwraper{
+    display: flex;
+    flex-direction: row;
+}
+.fieldlabel{
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+    font-weight: 500;
+}

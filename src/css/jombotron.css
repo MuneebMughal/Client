@@ -1,0 +1,16 @@
+.jomboContainer {
+  margin: 1.5rem 3rem 1.5rem 3rem !important;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+  color: azure !important;
+  text-decoration: none !important;
+  display: block !important;
+}
+.jomboContainer:hover{
+    transform: scale(1.05);
+
+}
+.jombo {
+  background-color: #212529;
+  
+}
