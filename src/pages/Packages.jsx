@@ -41,7 +41,6 @@ const Packages = () => {
         });
     }
   };
-  if (User.role === roles.DRIVER) return <Navigate to="/" />;
   return (
     <div>
       <Navbar />
