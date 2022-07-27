@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import { toast } from "react-toastify";
 import { RiDeleteBinLine } from "react-icons/ri";
 // import { AiFillEdit } from "react-icons/ai";
-import { deletePackage } from "../actions/package/package";
+import { deletePackage, updatePackageStatus } from "../actions/package/package";
 import { usePackages } from "../customhooks/usePackages";
 import { getPackages } from "../actions/package/package";
 import { useSelector } from "react-redux";
@@ -43,6 +43,18 @@ const Packages = () => {
         });
     }
   };
+  const handleChange = async (e, pkg) => {
+    if (User.role !== roles.ADMIN)
+      return toast.error("You can't perform this action.");
+    await updatePackageStatus(pkg.id, { status: e.target.value })
+      .then(() => {
+        toast.success(`${pkg.id} updated successfully`);
+        fetchdata();
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
   return (
     <div>
       <Navbar />
@@ -78,7 +90,22 @@ const Packages = () => {
                     </td>
                     <td>{pkg.RTA ? pkg.RTA : "–"}</td>
                     <td>{pkg.priority ? pkg.priority : "–"}</td>
-                    <td>{pkg.status ? pkgStatus[pkg.status] : "–"}</td>
+                    <td>
+                      {
+                        <div className="input_field select_option">
+                          <select
+                            value={pkg.status ? pkg.status : "-"}
+                            onChange={(e) => handleChange(e, pkg)}
+                          >
+                            <option value="inWarehouse">In Warehouse</option>
+                            <option value="inTransit">In Transit</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="missDelivered">Missdelivered</option>
+                          </select>
+                          <div className="select_arrow"></div>
+                        </div>
+                      }
+                    </td>
                     <td>
                       {pkg.customer
                         ? pkg.customer.name
