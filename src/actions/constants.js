@@ -7,3 +7,9 @@ export const roles = {
   DRIVER: "driver",
   CC: "cc",
 };
+export const pkgStatus = {
+  inWarehouse: "In Warehouse",
+  inTransit: "In Transit",
+  delivered: "Delivered",
+  missDelivered: "Missdelivered",
+};

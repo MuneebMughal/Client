@@ -35,6 +35,14 @@ const AddPackage = () => {
       .then((res) => {
         toast.success("Package Added Successfully");
         setLoading(false);
+        setEDD("");
+        setRTA("");
+        setLatitude("");
+        setLongitude("");
+        setName("");
+        setContact("");
+        setPriority("");
+        setDeliveredBy("");
       })
       .catch((err) => {
         setLoading(false);
@@ -82,8 +90,11 @@ const AddPackage = () => {
                     <div className="fieldlabel">Requested Time of Arrival</div>
                   </div>
                   <div className="input_field select_option">
-                    <select onChange={(e) => setPriority(e.target.value)}>
-                      <option>Select Priority</option>
+                    <select
+                      value={priority}
+                      onChange={(e) => setPriority(e.target.value)}
+                    >
+                      <option value="">Select Priority</option>
                       <option value="low">Low</option>
                       <option value="medium">Medium</option>
                       <option value="high">High</option>
@@ -159,8 +170,11 @@ const AddPackage = () => {
                   </div>
                   <h6>Assign Driver</h6>
                   <div className="input_field select_option">
-                    <select onChange={(e) => setDeliveredBy(e.target.value)}>
-                      <option>Select Driver</option>
+                    <select
+                      value={deliveredBy}
+                      onChange={(e) => setDeliveredBy(e.target.value)}
+                    >
+                      <option value="">Select Driver</option>
                       {drivers &&
                         drivers.map((driver, index) => {
                           return (

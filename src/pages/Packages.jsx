@@ -9,6 +9,8 @@ import { getPackages } from "../actions/package/package";
 import { useSelector } from "react-redux";
 import { roles } from "../actions/constants";
 import { Navigate } from "react-router";
+import { pkgStatus } from "../actions/constants";
+import moment from "moment";
 const Packages = () => {
   const [packages, setPackages] = useState([]);
   const User = useSelector((state) => state.user);
@@ -56,6 +58,9 @@ const Packages = () => {
               <th scope="col">RTA</th>
               <th scope="col">Priority</th>
               <th scope="col">Status</th>
+              <th scope="col">Customer</th>
+              <th scope="col">Contact</th>
+              <th scope="col">Assignee</th>
               <th scope="col">Delete</th>
               {/* <th scope="col">Edit</th> */}
             </tr>
@@ -66,10 +71,35 @@ const Packages = () => {
                 return (
                   <tr key={index}>
                     <th scope="row">{pkg.id}</th>
-                    <td>{pkg.EDD ? pkg.EDD : "–"}</td>
+                    <td>
+                      {pkg.EDD
+                        ? moment(new Date(pkg.EDD)).format("DD/MM/YYYY")
+                        : "–"}
+                    </td>
                     <td>{pkg.RTA ? pkg.RTA : "–"}</td>
                     <td>{pkg.priority ? pkg.priority : "–"}</td>
-                    <td>{pkg.status ? pkg.status : "–"}</td>
+                    <td>{pkg.status ? pkgStatus[pkg.status] : "–"}</td>
+                    <td>
+                      {pkg.customer
+                        ? pkg.customer.name
+                          ? pkg.customer.name
+                          : "–"
+                        : "-"}
+                    </td>
+                    <td>
+                      {pkg.customer
+                        ? pkg.customer.contact
+                          ? pkg.customer.contact
+                          : "–"
+                        : "-"}
+                    </td>
+                    <td>
+                      {pkg.deliveredBy
+                        ? pkg.deliveredBy.firstName && pkg.deliveredBy.firstName
+                          ? `${pkg.deliveredBy.firstName} ${pkg.deliveredBy.lastName}`
+                          : "–"
+                        : "-"}
+                    </td>
                     <td>
                       <div
                         className="table_action table_action_del"

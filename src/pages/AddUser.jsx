@@ -22,6 +22,11 @@ const AddUser = () => {
       .then((res) => {
         toast.success("User Added Successfully");
         setLoading(false);
+        setEmail("");
+        setPassword("");
+        setFirstName("");
+        setLastName("");
+        setRole("");
       })
       .catch((err) => {
         setLoading(false);
@@ -103,8 +108,11 @@ const AddUser = () => {
                     </div>
                   </div>
                   <div class="input_field select_option">
-                    <select onChange={(e) => setRole(e.target.value)}>
-                      <option>Select Role</option>
+                    <select
+                      value={role}
+                      onChange={(e) => setRole(e.target.value)}
+                    >
+                      <option value="">Select Role</option>
                       <option value="cc">Control Center(CC)</option>
                       <option value="driver">Driver</option>
                     </select>
