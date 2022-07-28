@@ -6,6 +6,10 @@ const initialState = {
   token: "",
   name: "",
   role: "",
+  firstName: "",
+  lastName: "",
+  score: "",
+  warning: "",
 };
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -17,6 +21,10 @@ export const userReducer = (state = initialState, action) => {
         isLoggedIn: true,
         name: action.payload.name,
         role: action.payload.role,
+        firstName: action.payload.firstName,
+        lastName: action.payload.lastName,
+        score: action.payload.score,
+        warning: action.payload.warning,
       };
       break;
     }

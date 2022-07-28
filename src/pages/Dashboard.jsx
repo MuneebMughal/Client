@@ -7,6 +7,7 @@ import { AiOutlineUserAdd } from "react-icons/ai";
 import { BiPackage } from "react-icons/bi";
 import { FiUsers } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import UserProfile from "../components/UserProfile";
 import "../css/jombotron.css";
 const Dashboard = () => {
   const user = useSelector((state) => state.user);
@@ -14,6 +15,7 @@ const Dashboard = () => {
   return (
     <div>
       <Navbar />
+      <UserProfile />
       {user.role === roles.ADMIN ? (
         <div>
           <Link className="jomboContainer" to="/add-user">
@@ -57,7 +59,7 @@ const Dashboard = () => {
         ""
       )}
       <div>
-        <Link className="jomboContainer" to='/packages'>
+        <Link className="jomboContainer" to="/packages">
           <div className="jumbotron jumbotron-fluid jombo">
             <div className="container">
               <h1 className="display-4">

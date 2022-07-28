@@ -27,7 +27,10 @@ const Login = () => {
             email: res.data.user.email,
             name: res.data.user.name,
             role: res.data.user.role,
-            imageUrl: res.data.user.image,
+            firstName: res.data.user.firstName,
+            lastName: res.data.user.lastName,
+            score: res.data.user.score,
+            warning: res.data.user.warning,
           },
         });
       })
