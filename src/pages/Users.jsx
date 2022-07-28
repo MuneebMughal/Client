@@ -41,6 +41,7 @@ const Users = () => {
         });
     }
   };
+  if (!User.isLoggedIn) return <Navigate to="/login" />;
   if (User.role === roles.DRIVER)
     return <Navigate to="/" />;
   return (

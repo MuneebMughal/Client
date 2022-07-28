@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Users from "./pages/Users";
 import Packages from "./pages/Packages";
+import Map from "./pages/Map";
 import "./App.css";
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ const App = () => {
         <Route exact path="/add-package" element={<AddPackage />} />
         <Route exact path="/users" element={<Users />} />
         <Route exact path="/packages" element={<Packages />} />
+        <Route exact path="/map" element={<Map />} />
       </Routes>
     </Router>
   );

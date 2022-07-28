@@ -55,6 +55,7 @@ const Packages = () => {
         toast.error(err.message);
       });
   };
+  if (!User.isLoggedIn) return <Navigate to="/login" />;
   return (
     <div>
       <Navbar />

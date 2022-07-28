@@ -8,6 +8,7 @@ import { BiPackage } from "react-icons/bi";
 import { FiUsers } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import UserProfile from "../components/UserProfile";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import "../css/jombotron.css";
 const Dashboard = () => {
   const user = useSelector((state) => state.user);
@@ -66,6 +67,18 @@ const Dashboard = () => {
                 View Packages <BiPackage />{" "}
               </h1>
               <p className="lead">Feature to see all Packages.</p>
+            </div>
+          </div>
+        </Link>
+      </div>
+      <div>
+        <Link className="jomboContainer" to="/map">
+          <div className="jumbotron jumbotron-fluid jombo">
+            <div className="container">
+              <h1 className="display-4">
+                See Map <FaMapMarkerAlt />{" "}
+              </h1>
+              <p className="lead">Feature to trace driver.</p>
             </div>
           </div>
         </Link>
