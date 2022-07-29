@@ -9,6 +9,7 @@ import { FiUsers } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import UserProfile from "../components/UserProfile";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { AiFillWarning } from "react-icons/ai";
 import "../css/jombotron.css";
 const Dashboard = () => {
   const user = useSelector((state) => state.user);
@@ -79,6 +80,18 @@ const Dashboard = () => {
                 See Map <FaMapMarkerAlt />{" "}
               </h1>
               <p className="lead">Feature to trace driver.</p>
+            </div>
+          </div>
+        </Link>
+      </div>
+      <div>
+        <Link className="jomboContainer" to="/warnings">
+          <div className="jumbotron jumbotron-fluid jombo">
+            <div className="container">
+              <h1 className="display-4">
+                See Warnings <AiFillWarning />{" "}
+              </h1>
+              <p className="lead">Feature to see warnings.</p>
             </div>
           </div>
         </Link>
