@@ -25,13 +25,20 @@ const AddPackage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    let location = [];
+    const lastLocation = {};
     let customer = {};
-    location.push(+longitude);
-    location.push(+latitude);
+    lastLocation.lng = +longitude;
+    lastLocation.lat = +latitude;
     customer.name = name;
     customer.contact = contact;
-    await addPackage({ EDD, RTA, location, priority, customer, deliveredBy })
+    await addPackage({
+      EDD,
+      RTA,
+      lastLocation,
+      priority,
+      customer,
+      deliveredBy,
+    })
       .then((res) => {
         toast.success("Package Added Successfully");
         setLoading(false);
