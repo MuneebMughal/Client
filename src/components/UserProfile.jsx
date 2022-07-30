@@ -20,7 +20,7 @@ const UserProfile = () => {
                 style={{ listStyle: "none", margin: "0", padding: "0" }}
               >
                 <li className="my-1" style={{ fontWeight: "bold" }}>
-                  {user.email}
+                  {user.id}
                 </li>
                 {user.role === roles.DRIVER ? (
                   <>
@@ -35,18 +35,6 @@ const UserProfile = () => {
                       }
                     >
                       {user.score}
-                    </li>
-                    <li
-                      className="my-1"
-                      style={
-                        user.warning === "high"
-                          ? { color: "red" }
-                          : user.warning === "medium"
-                          ? { color: "orange" }
-                          : { color: "green" }
-                      }
-                    >
-                      {user.warning.toUpperCase()}
                     </li>
                   </>
                 ) : (

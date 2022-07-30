@@ -61,7 +61,11 @@ const Warning = () => {
           </thead>
           <tbody>
             {warnings &&
-              warnings.map((wrn, index) => {
+              warnings.filter((wrn) =>
+              User.role === roles.DRIVER
+                ? wrn.generatedBy._id === User._id
+                : true
+            ).map((wrn, index) => {
                 return (
                   <tr key={index}>
                     <th scope="row">{index}</th>

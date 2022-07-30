@@ -16,13 +16,13 @@ export const useUser = (setLoading) => {
             dispatch({
               type: authConstants.LOGIN,
               payload: {
-                email: res.data.user.email,
+                _id: res.data.user._id,
+                id: res.data.user.id,
                 name: res.data.user.name,
                 role: res.data.user.role,
                 firstName: res.data.user.firstName,
                 lastName: res.data.user.lastName,
                 score: res.data.user.score,
-                warning: res.data.user.warning,
               },
             });
           }

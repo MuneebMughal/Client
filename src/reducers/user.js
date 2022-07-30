@@ -1,6 +1,7 @@
 import { authConstants } from "../actions/constants";
 const initialState = {
-  email: "",
+  _id:"",
+  id: "",
   isLoggedIn: false,
   loading: false,
   token: "",
@@ -16,7 +17,8 @@ export const userReducer = (state = initialState, action) => {
     case authConstants.LOGIN: {
       state = {
         ...state,
-        email: action.payload.email,
+        _id: action.payload._id,
+        id: action.payload.id,
         token: action.payload.token,
         isLoggedIn: true,
         name: action.payload.name,
@@ -24,7 +26,6 @@ export const userReducer = (state = initialState, action) => {
         firstName: action.payload.firstName,
         lastName: action.payload.lastName,
         score: action.payload.score,
-        warning: action.payload.warning,
       };
       break;
     }

@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { toast } from "react-toastify";
 import { RiDeleteBinLine } from "react-icons/ri";
-// import { AiFillEdit } from "react-icons/ai";
 import { deletePackage, updatePackageStatus } from "../actions/package/package";
 import { usePackages } from "../customhooks/usePackages";
 import { getPackages } from "../actions/package/package";
 import { useSelector } from "react-redux";
 import { roles } from "../actions/constants";
 import { Navigate } from "react-router";
-import { pkgStatus } from "../actions/constants";
 import moment from "moment";
 const Packages = () => {
   const [packages, setPackages] = useState([]);
@@ -80,73 +78,74 @@ const Packages = () => {
           </thead>
           <tbody>
             {packages &&
-              packages.map((pkg, index) => {
-                return (
-                  <tr key={index}>
-                    <th scope="row">{pkg.id}</th>
-                    <td>
-                      {pkg.EDD
-                        ? moment(new Date(pkg.EDD)).format("DD/MM/YYYY")
-                        : "–"}
-                    </td>
-                    <td>{pkg.RTA ? pkg.RTA : "–"}</td>
-                    <td>{pkg.priority ? pkg.priority : "–"}</td>
-                    <td>
-                      {
-                        <div className="input_field select_option">
-                          <select
-                            value={pkg.status ? pkg.status : "-"}
-                            onChange={(e) => handleChange(e, pkg)}
-                          >
-                            <option value="inWarehouse">In Warehouse</option>
-                            <option value="inTransit">In Transit</option>
-                            <option value="delivered">Delivered</option>
-                            <option value="missDelivered">Missdelivered</option>
-                          </select>
-                          <div className="select_arrow"></div>
-                        </div>
-                      }
-                    </td>
-                    <td>
-                      {pkg.customer
-                        ? pkg.customer.name
+              packages
+                .filter((pkg) =>
+                  User.role === roles.DRIVER
+                    ? pkg.deliveredBy._id === User._id
+                    : true
+                )
+                .map((pkg, index) => {
+                  return (
+                    <tr key={index}>
+                      <th scope="row">{pkg.id}</th>
+                      <td>
+                        {pkg.EDD
+                          ? moment(new Date(pkg.EDD)).format("DD/MM/YYYY")
+                          : "–"}
+                      </td>
+                      <td>{pkg.RTA ? pkg.RTA : "–"}</td>
+                      <td>{pkg.priority ? pkg.priority : "–"}</td>
+                      <td>
+                        {
+                          <div className="input_field select_option">
+                            <select
+                              value={pkg.status ? pkg.status : "-"}
+                              onChange={(e) => handleChange(e, pkg)}
+                            >
+                              <option value="inWarehouse">In Warehouse</option>
+                              <option value="inTransit">In Transit</option>
+                              <option value="delivered">Delivered</option>
+                              <option value="missDelivered">
+                                Missdelivered
+                              </option>
+                            </select>
+                            <div className="select_arrow"></div>
+                          </div>
+                        }
+                      </td>
+                      <td>
+                        {pkg.customer
                           ? pkg.customer.name
-                          : "–"
-                        : "-"}
-                    </td>
-                    <td>
-                      {pkg.customer
-                        ? pkg.customer.contact
+                            ? pkg.customer.name
+                            : "–"
+                          : "-"}
+                      </td>
+                      <td>
+                        {pkg.customer
                           ? pkg.customer.contact
-                          : "–"
-                        : "-"}
-                    </td>
-                    <td>
-                      {pkg.deliveredBy
-                        ? pkg.deliveredBy.firstName && pkg.deliveredBy.firstName
-                          ? `${pkg.deliveredBy.firstName} ${pkg.deliveredBy.lastName}`
-                          : "–"
-                        : "-"}
-                    </td>
-                    <td>
-                      <div
-                        className="table_action table_action_del"
-                        onClick={() => handleDelete(pkg)}
-                      >
-                        <RiDeleteBinLine />
-                      </div>
-                    </td>
-                    {/* <td>
-                      <div
-                        className="table_action table_action_edit"
-                        onClick={() => handleEdit(user)}
-                      >
-                        <AiFillEdit />
-                      </div>
-                    </td> */}
-                  </tr>
-                );
-              })}
+                            ? pkg.customer.contact
+                            : "–"
+                          : "-"}
+                      </td>
+                      <td>
+                        {pkg.deliveredBy
+                          ? pkg.deliveredBy.firstName &&
+                            pkg.deliveredBy.firstName
+                            ? `${pkg.deliveredBy.firstName} ${pkg.deliveredBy.lastName}`
+                            : "–"
+                          : "-"}
+                      </td>
+                      <td>
+                        <div
+                          className="table_action table_action_del"
+                          onClick={() => handleDelete(pkg)}
+                        >
+                          <RiDeleteBinLine />
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
           </tbody>
         </table>
       </div>
