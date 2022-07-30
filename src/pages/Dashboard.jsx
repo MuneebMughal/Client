@@ -9,7 +9,7 @@ import { FiUsers } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import UserProfile from "../components/UserProfile";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { AiFillWarning } from "react-icons/ai";
+import { AiFillWarning, AiFillSchedule } from "react-icons/ai";
 import "../css/jombotron.css";
 const Dashboard = () => {
   const user = useSelector((state) => state.user);
@@ -96,6 +96,22 @@ const Dashboard = () => {
           </div>
         </Link>
       </div>
+      {user.role === roles.ADMIN || user.role === roles.CC ? (
+        <div>
+          <Link className="jomboContainer" to="/driver-schedule">
+            <div className="jumbotron jumbotron-fluid jombo">
+              <div className="container">
+                <h1 className="display-4">
+                  Drivers Schedule <AiFillSchedule />{" "}
+                </h1>
+                <p className="lead">Feature to see all Drivers Schedule.</p>
+              </div>
+            </div>
+          </Link>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

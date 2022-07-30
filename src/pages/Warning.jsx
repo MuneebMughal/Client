@@ -45,7 +45,7 @@ const Warning = () => {
     <div>
       <Navbar />
       <h2 style={{ padding: "1rem" }} className="text-center">
-        Packages
+        Warnings
       </h2>
       <div className="table-responsive tableContainer">
         <table className="table table-responsive \">

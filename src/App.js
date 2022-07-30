@@ -11,6 +11,7 @@ import Users from "./pages/Users";
 import Packages from "./pages/Packages";
 import Map from "./pages/Map";
 import Warning from "./pages/Warning";
+import DriverSchedule from "./pages/DriverSchedule";
 import "./App.css";
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -28,6 +29,7 @@ const App = () => {
         <Route exact path="/packages" element={<Packages />} />
         <Route exact path="/map" element={<Map />} />
         <Route exact path="/warnings" element={<Warning />} />
+        <Route exact path="/driver-schedule" element={<DriverSchedule />} />
       </Routes>
     </Router>
   );
