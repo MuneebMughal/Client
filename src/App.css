@@ -39,5 +39,12 @@
   margin: 2rem 1.5rem 2rem;
 }
 .table-responsive {
-  overflow-x:unset !important;
+  overflow-x: unset !important;
+}
+.map-container {
+  width: 80vw;
+  border: 2px solid black;
+  margin-left: 10%;
+  margin-top: 5%;
+  height: 65vh;
 }
